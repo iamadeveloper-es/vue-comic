@@ -1,0 +1,45 @@
+.hero {
+    width: 100%;
+    background-color: $heroBlue;
+    color: $white;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid $heroBorder;
+    &:hover{
+      background-color: $heroLightBlue;
+    }
+    &:hover img{
+      transform: scale(1.02);
+    }
+    .hero__img {
+      overflow: hidden;
+    }
+    img {
+        width: 100%;
+    }
+    .hero__stats {
+      padding: 15px;
+      li{
+        margin-bottom: 10px;
+          &:nth-child(1){
+          margin-top: 15px;
+        }
+      }
+    }
+    .stats__bar{
+      width: 100%;
+      height: 20px;
+      overflow: hidden;
+      background-color: $white;
+      border-radius: 3px;
+      position: relative;
+    }
+    .stats__progress{
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $orange;
+    }
+}
