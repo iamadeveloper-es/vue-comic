@@ -7,6 +7,7 @@
               <input type="text" name="" id=""
                 :value="herosSearch"
                 @input="filteredHeros"
+                @keyup.enter="filteredHeros"
               >
             </form>
         </div>
