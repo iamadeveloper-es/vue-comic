@@ -1,6 +1,7 @@
 <template>
   <div class="footer">
-      <p><small>IamADeveloper 2021</small></p>
+      <p><span>&#9757;</span><small>IamADeveloper 2021 &copy;</small></p>
+      <p><small>Thanks to: akabab superhero-api</small></p>
   </div>
 </template>
 

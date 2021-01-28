@@ -1,7 +1,25 @@
 <template>
   <div class="superheros">
+    <div class="g-container">
+      <div class="g-row">
+        <div class="g-col-12 g-col-md-8 g-m-md-auto">
+          <p>Over 500 characters, here you can find funny an uncommon characters like: Yoda, Indiana Jones or Mr Incredible, check their stats, click on each to see more details.</p>
+          <div class="leyend">
+            <p>Character Alignment:</p>
+            <div class="leyend__box leyend__good">
+              <span>Good: </span>
+              <div class="leyend__color"></div>
+            </div>
+            <div class="leyend__box leyend__bad">
+              <span>Bad: </span>
+              <div class="leyend__color"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <search-hero
-      :labelName="'Search A Super Hero'"
+      :labelName="'Search For Your Favorite Super Hero'"
       :heros="heros"
       @search="heroFilter = $event"
       v-if="heroBattle.length < 2"
@@ -9,7 +27,7 @@
     <div class="g-container" v-if="heroBattle.length < 2">
       <ul class="g-row ul-nopadding">
         <li
-          class="g-col-12 g-md-col-6 g-col-lg-4 g-col-xl-3"
+          class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xl-3"
           v-for="(hero, index) in heroSearch"
           :key="index"
         >
@@ -24,10 +42,9 @@
                 <img :src="hero.images.sm" alt="" />
               </div>
               <div class="hero__stats">
-                <h4>Stats</h4>
+                <h4>General Stats</h4>
                 <ul class="ul-nopadding">
                   <li>
-                    General:
                     <div class="stats__bar d-block">
                       <div
                         class="span stats__progress"
@@ -45,6 +62,11 @@
                     </div>
                   </li>
                 </ul>
+              </div>
+              <div class="hero__alignment">
+                <div class="alignment"
+                  :class="hero.biography.alignment === 'good' ? aligmentGood : aligmentBad"
+                ></div>
               </div>
             </div>
           </router-link>
@@ -87,6 +109,9 @@ export default {
       heros: [],
       heroFilter: "",
       stats: 100,
+      heroAligment: '',
+      aligmentBad: 'bad',
+      aligmentGood: 'good',
       clSelected: 'selected',
       clNoSelected: 'no-selected',
       battleSelected: false,
@@ -128,23 +153,31 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+.leyend{
+  margin-top: 30px;
+  span{
+    color: $white;
+    width: 100px;
+  }
+  .leyend__box{
+    margin-top: 15px;
+    display: flex;
+    .leyend__color{
+      height: 25px;
+      width: 25px;
+    }
 
-.g-btn-fake{
-    border: 0;
-    border-radius: 3px;
-    min-width: 80px;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 40px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: $white;
-    text-align: center;
-    color: $orange;
-    cursor: pointer;
+  }
+  .leyend__good{
+    .leyend__color{
+      background-color: #15fe15;;
+    }
+  }
+  .leyend__bad{
+    .leyend__color{
+      background-color: #ba0101;
+    }
+  }
 }
 .hero {
   width: 100%;
@@ -158,6 +191,24 @@ export default {
   }
   h5 {
     font-size: 20px;
+  }
+  .hero__alignment{
+    height: 20px;
+    
+  }
+  .alignment{
+    width: 90%;
+    height: 50%;
+    transform: translate(5%, -25%);
+    &.good{
+      background-color: #15fe15;
+    }
+    &.bad{
+      background-color: #ba0101;
+    }
+    &.unknow{
+      background-color: grey;
+    }
   }
 }
 .hero__btn{

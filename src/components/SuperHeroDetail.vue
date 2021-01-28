@@ -92,6 +92,14 @@
           </div>
         </div>
       </div>
+      <div class="g-row">
+        <div class="g-col-6 g-m-auto g-text-center">
+          <p class="white-txt">Go back to home and select a character</p>
+          <router-link to="/">
+            <div class="g-btn-fake">Home</div>
+          </router-link>
+        </div>
+      </div>
     </div>
     <div class="g-container" v-else>
       <div class="g-row">
@@ -119,11 +127,18 @@ export default {
       url: "https://akabab.github.io/superhero-api/api/id/",
       hero: null,
       imgPreload: require("../assets/preload.gif"),
+      defaultHeroId: 1, 
     };
   },
   methods: {
     getHero() {
           axios.get(`${this.url}${this.heroSelected}.json`)
+          .then((results) => {
+          this.hero = results.data
+          }).catch(() => this.getHeroFallBack())
+    },
+    getHeroFallBack(){
+        axios.get(`${this.url}1.json`)
           .then((results) => {
           this.hero = results.data
           }).catch((e) => console.log(e)) 
@@ -140,27 +155,7 @@ export default {
   margin-top: 40px;
   color: $white;
 }
-.g-btn-fake{
-    border: 0;
-    border-radius: 3px;
-    min-width: 80px;
-    max-width: 300px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    padding-left: 30px;
-    padding-right: 30px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    background-color: $white;
-    text-align: center;
-    color: $orange;
-    cursor: pointer;
-}
-p {
-  font-size: 18px;
-}
+
 .mr {
   margin-right: 10px;
 }

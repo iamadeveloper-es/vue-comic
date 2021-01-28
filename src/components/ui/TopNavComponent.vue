@@ -8,7 +8,7 @@
     <div class="nav__logo">
       <router-link to="/">
       <img :src="logo" alt="">
-      </router-link> |
+      </router-link>
     </div>
   </div>
 </template>
